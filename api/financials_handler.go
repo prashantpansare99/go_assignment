@@ -13,7 +13,7 @@ func FinancialsHandler(w http.ResponseWriter, r *http.Request) {
     // Step 1: Parse request parameters
     // Extract company ID from the request parameters
     companyID := r.URL.Query().Get("companyId")
-	initialData, err := db.GetInitialData(companyID)
+	initialData, err := db.GetFinancialsData(companyID)
     if err != nil {
         // Handle error
         // Respond with appropriate error message

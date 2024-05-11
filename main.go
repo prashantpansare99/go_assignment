@@ -3,12 +3,10 @@ package main
 import (
 	"fmt"
 	"log"
-	"math/rand"
 	"net/http"
-	"time"
 
-	"github.com/prashantpansare99/go_assignment/db"
 	"github.com/prashantpansare99/go_assignment/api"
+	"github.com/prashantpansare99/go_assignment/db"
 )
 
 func main() {
@@ -21,6 +19,9 @@ func main() {
 	defer db.CloseDB()
 
 	http.HandleFunc("/api/financials", api.FinancialsHandler)
+	http.HandleFunc("/api/employees", api.EmployeeHandler)
+	http.HandleFunc("/api/sales", api.SalesHandler)
+	http.HandleFunc("/api/initialdata", api.AddCompanyData)
 
     // Start HTTP server
     log.Println("Server is running on port 8080...")
@@ -28,34 +29,27 @@ func main() {
         log.Fatalf("Failed to start server: %v", err)
     }
 
-	// Set initial data for a company
-	// companyID := "company456"
-	// initialData := generateRandomInitialData()
+	// Below is the code to add data manually from main function 
+
+	// initialData := db.InitialData{
+	// 	CompanyID: "company456",
+	// 	FinancialsData: db.FinancialsData{
+	// 		Revenue: 20000,
+	// 		Expenses: 9000,
+	// 	},
+	// 	SalesData: db.SalesData{
+	// 		TotalSales:   600,
+	// 		AveragePrice: 60,
+	// 	},
+	// 	EmployeeStats: db.EmployeeStats{
+	// 		TotalEmployees: 80,
+	// 		AverageSalary:  80000,
+	// 	},
+	// }
+
+	// // Insert initial data into the database
 	// err = db.SetInitialData(&initialData)
 	// if err != nil {
-	// 	log.Fatalf("Failed to set initial data for company %s: %v", companyID, err)
+	// 	log.Fatal(err)
 	// }
-	// fmt.Printf("Initial data set successfully for company %s\n", companyID)
-
-	// Retrieve initial data for the same company
-	// retrievedData, err := db.GetInitialData(companyID)
-	// if err != nil {
-	// 	log.Fatalf("Failed to retrieve initial data for company %s: %v", companyID, err)
-	// }
-	// fmt.Printf("Initial data retrieved for company %s:\n", companyID)
-	// fmt.Printf("FinancialsData: %v\n", retrievedData.FinancialsData)
-	// fmt.Printf("SalesData: %v\n", retrievedData.SalesData)
-	// fmt.Printf("EmployeeStats: %v\n", retrievedData.EmployeeStats)
-}
-
-// generateRandomInitialData generates random initial data for demonstration purposes.
-func generateRandomInitialData() db.InitialData {
-	rand.Seed(time.Now().UnixNano())
-
-	return db.InitialData{
-		CompanyID:      "company456",
-		FinancialsData: rand.Intn(10000),       // Random financials data
-		SalesData:      rand.Intn(1000),         // Random sales data
-		EmployeeStats:  rand.Intn(500),          // Random employee stats
-	}
 }
