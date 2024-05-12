@@ -8,8 +8,6 @@ import (
 )
 
 func AddCompanyData(w http.ResponseWriter, r *http.Request) {
-    // Step 1: Parse request parameters
-    // Extract company ID from the request parameters
 	var initialData db.InitialData
 	if err := json.NewDecoder(r.Body).Decode(&initialData); err != nil {
         http.Error(w, "Failed to decode request body", http.StatusBadRequest)

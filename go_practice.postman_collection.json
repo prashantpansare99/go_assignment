@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "b4d63995-23a8-45c3-89a2-3d48f06e49a3",
+		"name": "go_practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20163173",
+		"_collection_link": "https://solar-water-539206.postman.co/workspace/presidio~2fa86dcd-fc48-49ce-924e-1b9336c6a5a3/collection/20163173-b4d63995-23a8-45c3-89a2-3d48f06e49a3?action=share&source=collection_link&creator=20163173"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/initialdata",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyID\": \"company440\",\r\n    \"financialsData\": {\r\n        \"revenue\": 80000,\r\n        \"expenses\": 80000\r\n    },\r\n    \"salesData\": {\r\n        \"totalSales\": 700,\r\n        \"averagePrice\": 70\r\n    },\r\n    \"employeeStats\": {\r\n        \"totalEmployees\": 50,\r\n        \"averageSalary\": 50000\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/initialdata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"initialdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/financials?companyId=company456",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/financials?companyId=company456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"financials"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "company456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/employees?companyId=company456",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employees?companyId=company456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employees"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "company456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/sales?companyId=company456",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sales?companyId=company456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sales"
+					],
+					"query": [
+						{
+							"key": "companyId",
+							"value": "company456"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
