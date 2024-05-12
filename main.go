@@ -4,15 +4,31 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/prashantpansare99/go_assignment/api"
 	"github.com/prashantpansare99/go_assignment/db"
 )
 
+func init() {
+    if err := godotenv.Load(); err != nil {
+        log.Fatalf("Error loading .env file: %v", err)
+    }
+}
+
 func main() {
 	fmt.Println("In main")
+
+	dbUser := os.Getenv("DB_USER")
+    dbPassword := os.Getenv("DB_PASSWORD")
+    dbHost := os.Getenv("DB_HOST")
+    dbPort := os.Getenv("DB_PORT")
+    dbName := os.Getenv("DB_NAME")
+
 	// Initialize the database connection
-	err := db.InitializeDB("root:root@tcp(127.0.0.1:3306)/company_info")
+	dbConnectionString := dbUser + ":" + dbPassword + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName
+    err := db.InitializeDB(dbConnectionString)
 	if err != nil {
 		log.Fatalf("Failed to initialize database connection: %v", err)
 	}
